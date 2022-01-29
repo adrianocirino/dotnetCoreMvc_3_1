@@ -1,0 +1,60 @@
+{
+	"nomeCliente": "Consumidor Final",
+	"statusVenda": "E",
+	"listaPdvVendaDetalhe": [{
+		"quantidade": "1.00",
+		"valorUnitario": 120,
+		"valorDesconto": "10.00",
+		"valorSubtotal": "120.00",
+		"valorTotal": "110.00",
+		"taxaDesconto": "8.33",
+		"taxaComissao": "10.00",
+		"valorComissao": "11.00",
+		"produto": {
+			"id": 4
+		}
+	}],
+	"listaFormaPagamento": [{
+		"qtdParcela": 1,
+		"troco": "0.00",
+		"valor": "55.00",
+		"tipoPagamento": {
+			"id": 4,
+			"codigo": "CARTAO_DEBITO",
+			"descricao": "Cartão de Débito",
+			"permiteTroco": "NAO",
+			"geraParcelas": "NAO"
+		},
+		"estorno": "N",
+		"forma": "CARTAO_DEBITO",
+		"numeroAutorizacao": "",
+		"cartaoTipoIntegracao": "2",
+		"bandeira": "01",
+		"idoperadoraCartao": 1
+	}, {
+		"qtdParcela": 1,
+		"troco": "0.00",
+		"valor": "55.00",
+		"tipoPagamento": {
+			"id": 1,
+			"codigo": "DINHEIRO",
+			"descricao": "Dinheiro",
+			"permiteTroco": "SIM",
+			"geraParcelas": "NAO"
+		},
+		"estorno": "N",
+		"forma": "DINHEIRO",
+		"numeroAutorizacao": null
+	}],
+	"valorDesconto": "10.00",
+	"valorSubtotal": "120.00",
+	"valorTotal": "110.00",
+	"troco": "0.00",
+	"taxaDesconto": "0.00",
+	"dataHoraVenda": "2021-12-16T00:33:34.187Z",
+	"idempresa": 1,
+	"idPdvOperador": 5,
+	"idVendedor": 5,
+	"idPdvMovimento": 366,
+	"valorComissao": "11.00"
+}
