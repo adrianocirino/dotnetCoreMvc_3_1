@@ -61,6 +61,8 @@ namespace DevIO.App.Controllers
                 return View(produtoViewModel);
             }
 
+            produtoViewModel.Imagem = produtoViewModel.ImagemUpload.FileName;
+
             await _produtoRepository.Adicionar(_mapper.Map<Produto>(produtoViewModel));
 
             return View(produtoViewModel); 
