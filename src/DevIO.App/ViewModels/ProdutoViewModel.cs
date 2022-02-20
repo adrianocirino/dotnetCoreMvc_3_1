@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Reflection.Metadata.Ecma335;
+using DevIO.App.Extensions;
 using DevIO.Business.Models;
 using Microsoft.AspNetCore.Http;
 
@@ -33,6 +34,7 @@ namespace DevIO.App.ViewModels
         public string Imagem { get; set; }
 
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
+        [Moeda]
         public decimal Valor { get; set; }
 
         [ScaffoldColumn(false)] // na hora de fazer o scaffold vai desconsiderar essa coluna
