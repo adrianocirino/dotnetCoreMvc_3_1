@@ -15,14 +15,18 @@ namespace DevIO.App.Controllers
     {
         private readonly IProdutoRepository _produtoRepository;
         private readonly IFornecedorRepository _fornecedorRepository;
+        private readonly IProdutoService _produtoService;
         private readonly IMapper _mapper;
 
         public ProdutosController(IProdutoRepository produtoRepository,
                                   IMapper mapper, 
-                                  IFornecedorRepository fornecedorRepository)
+                                  IFornecedorRepository fornecedorRepository, 
+                                  IProdutoService produtoService,
+                                  INotificador notificador) : base(notificador)
         {
             _produtoRepository = produtoRepository;
             _fornecedorRepository = fornecedorRepository;
+            _produtoService = produtoService;
             _mapper = mapper;
         }
 
@@ -74,7 +78,9 @@ namespace DevIO.App.Controllers
 
             produtoViewModel.Imagem = imgPrefiro + produtoViewModel.ImagemUpload.FileName;
 
-            await _produtoRepository.Adicionar(_mapper.Map<Produto>(produtoViewModel));
+            await _produtoService.Adicionar(_mapper.Map<Produto>(produtoViewModel));
+
+            if (!OperacaoValida()) return View(produtoViewModel);
 
             return RedirectToAction("Index"); 
         }
@@ -129,7 +135,9 @@ namespace DevIO.App.Controllers
 
             var produto = _mapper.Map<Produto>(produtoAtualizacao);
 
-            await _produtoRepository.Atualizar(produto);
+            await _produtoService.Atualizar(produto);
+
+            if (!OperacaoValida()) return View(produtoViewModel);
 
             return RedirectToAction("Index");
         }
@@ -159,7 +167,12 @@ namespace DevIO.App.Controllers
                 return NotFound();
             }
 
-            await _produtoRepository.Remover(id);
+            await _produtoService.Remover(id);
+
+            if (!OperacaoValida()) return View(produtoViewModel);
+
+            //única que sobrevive a um redirect é um tempData, viewBag não sobrevive
+            TempData["Sucesso"] = "Produto excluído com sucesso!";
 
             return RedirectToAction("Index");
         }
